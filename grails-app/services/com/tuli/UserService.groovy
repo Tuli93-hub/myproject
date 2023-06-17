@@ -1,10 +1,10 @@
 package com.tuli
 
+import grails.gorm.transactions.Transactional
 import grails.web.servlet.mvc.GrailsParameterMap
 
-import javax.transaction.Transactional
 
-
+@Transactional
 class UserService {
 
 
@@ -25,7 +25,6 @@ class UserService {
 
     def update(User user, GrailsParameterMap params) {
         user.properties = params
-
         def response = AppUtil.saveResponse(false, user)
         if (user.validate()) {
             user.save(flush: true)

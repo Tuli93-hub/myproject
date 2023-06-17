@@ -7,6 +7,8 @@ class User {
     String password
     String email
     String mobile
+    String userType = GlobalConfig.USER_TYPE.REGULAR_MEMBER
+
 
     static constraints = {
         email(email: true, nullable: false, unique: true, blank: false)
@@ -25,10 +27,7 @@ class User {
         this.password = this.password.encodeAsMD5()
     }
 
-    static mapping = {
-        version(false)
 
-    }
 
 
 

@@ -16,7 +16,7 @@ h1 {
     z-index: 1000;
     padding: 20px 0;
     overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    overflow-y: auto;
     border-right: 1px solid #eee;
 }
 
@@ -35,3 +35,36 @@ h1 {
 .sidebar .nav-link {
     border-radius: 0;
 }
+.thead{
+    background-color: #007bff;
+    color: white;
+}
+.action-row{
+    width: 135px;
+    text-align: center;
+    background-color: #007bff;
+}
+
+
+.paginate {
+    background: #fff;
+    border-radius: 2px;
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+}
+.option{
+    position: relative;
+}
+.profile{
+    margin-left: 400px ;
+    width: 40%;
+    height: 40%;
+}
+.pro{
+    margin-left: 400px ;
+    width: 20%;
+    height: 20%;
+}
+
+

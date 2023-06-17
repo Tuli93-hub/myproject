@@ -1,6 +1,8 @@
 package com.tuli
 
+import grails.gorm.transactions.Transactional
 
+@Transactional
 
 class AuthenticationService {
 
@@ -12,7 +14,7 @@ class AuthenticationService {
     }
 
     def doLogin(String email, String password){
-        password = password.encodeAsMD5()
+        password  = password.encodeAsMD5()
         User user = User.findByEmailAndPassword(email, password)
         if (user){
             setUserAuthorization(user)
@@ -28,7 +30,10 @@ class AuthenticationService {
         }
         return false
     }
-
+    def getUserid(){
+        def authorization = AppUtil.getAppSession()[AUTHORIZED]
+        return authorization?.id
+    }
 
     def getUser(){
         def authorization = AppUtil.getAppSession()[AUTHORIZED]
@@ -38,7 +43,14 @@ class AuthenticationService {
 
     def getUserName(){
         def user = getUser()
-        return "${user.userName} "
+        return "${user.userName}"
+    }
+    boolean isAdministratorUser(){
+        def user = getUser()
+        if (user && user.userType == GlobalConfig.USER_TYPE.ADMINISTRATOR){
+            return true
+        }
+        return false
     }
 
 

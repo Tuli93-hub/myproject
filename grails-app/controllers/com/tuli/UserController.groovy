@@ -3,12 +3,20 @@ package com.tuli
 class UserController {
 
     UserService userService
+    AuthenticationService authenticationService
 
     def index() {
         def response = userService.list(params)
         [userList: response.list, total:response.count]
     }
-
+    def profile() {
+        if(authenticationService.isAuthenticated()){
+            def user_id = authenticationService.getUserid()
+            def response = userService.getById(user_id)
+            def info = authenticationService.getUser()
+            [user: info]
+        }
+    }
     def details(Integer id) {
         def response = userService.getById(id)
         if (!response){
@@ -22,13 +30,16 @@ class UserController {
         [user: flash.redirectParams]
     }
 
+
+
+
     def save() {
         def response = userService.save(params)
         if (!response.isSuccess) {
             flash.redirectParams = response.model
             redirect(controller: "user", action: "index")
         }else{
-            redirect(controller: "user", action: "index")
+            redirect(controller: "user", action: "create")
         }
     }
 
@@ -69,10 +80,9 @@ class UserController {
     def delete(Integer id) {
         def response = userService.getById(id)
         if (!response){
-            flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
             redirect(controller: "user", action: "index")
         }else{
-            response = UserService.delete(response)
+            response = userService.delete(response)
             if (!response){
                 flash.message = AppUtil.infoMessage(g.message(code: "unable.to.delete"), false)
             }else{

@@ -1,9 +1,10 @@
 <!doctype html>
-<html>
+<html lang="en" class="no-js">
 <head>
-    <meta name="layout" content="main"/>
+    <meta name="layout" content="public"/>
 
 </head>
+
 <body>
 
 <div id="global-wrapper">
@@ -11,11 +12,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-4 mx-auto">
-                    <h1 class="text-center login-title">Contacts Book Member Login</h1>
+                    <h1 class="text-center login-title">User Login</h1>
                     <div class="account-wall">
                         <g:img dir="images" file="grails.svg" class="profile-img"/>
                         <g:form controller="authentication" action="doLogin" >
-                            <g:textField name="userName" class="form-control" placeholder="UserName" required="required" />
+                            <g:textField name="email" class="form-control" placeholder="Email" required="required" />
                             <g:passwordField name="password" class="form-control" placeholder="Password" required="required" />
                             <g:submitButton class="btn btn-lg btn-primary btn-block" name="login" value="Login"/>
                             <g:link controller="authentication" action="registration" class="btn btn-lg btn-primary btn-block">User Registration</g:link>
