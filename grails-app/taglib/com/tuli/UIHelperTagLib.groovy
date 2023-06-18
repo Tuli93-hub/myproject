@@ -24,7 +24,7 @@ class UIHelperTagLib {
             navigations.add([controller: "user", action: "index", name: "User List"])
         }
         if(authenticationService.isAdministratorUser()){
-            navigations.add([controller: "user", action: "create", name: "Signup"])
+            navigations.add([controller: "user", action: "create", name: "Add New User"])
         }
 
         navigations.each { menu ->

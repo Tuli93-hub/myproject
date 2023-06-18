@@ -17,7 +17,7 @@ class AuthenticationController {
             if(authenticationService.isAdministratorUser()){
                 redirect(controller: "user", action: "index")}
             else{
-                redirect(controller: "user", action: "profile")
+                redirect(controller: "dashboard", action: "index")
             }
         } else {
             redirect(controller: "authentication", action: "login")
@@ -37,12 +37,11 @@ class AuthenticationController {
 
     def doRegistration() {
         def response = userService.save(params)
-        if (response.isSuccess) {
-            authenticationService.setUserAuthorization(response.model)
-            redirect(controller: "authentication", action: "login")
-        } else {
+        if (!response.isSuccess){
             flash.redirectParams = response.model
             redirect(controller: "authentication", action: "registration")
+        } else{
+            redirect(controller: "authentication", action: "login")
         }
     }
 

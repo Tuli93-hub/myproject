@@ -114,7 +114,7 @@ environments:
     development:
         dataSource:
             dbCreate: update
-            url: jdbc:mysql://localhost:3306/tuli?useSSL=false&serverTimezone=UTC
+            url: jdbc:mysql://localhost:3306/tuli_3?useSSL=false&serverTimezone=UTC
     test:
         dataSource:
             dbCreate: update
